@@ -5,7 +5,7 @@ from app.library.configuration_handler import ConfigurationHandler
 
 config = ConfigurationHandler()
 
-engine = create_engine(config.DATABASE_CONNECTION_STRING)
+engine = create_engine(config.DATABASE_CONNECTION_STRING,connect_args={'sslmode': 'require', "application_name": "API-FreshersOn"})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
