@@ -1,4 +1,4 @@
-from app.library.configuration_handler import ConfigurationHandler
+from app.commonlib.configuration_handler import ConfigurationHandler
 from fastapi import status,Depends, Request, Response
 from app.auth.auth_bearer import JWTBearer
 

@@ -22,17 +22,6 @@ class ApplicantDeleteModel(BaseModel):
 
 class ApplicantUpdateModel(BaseModel):
     id: int
-    password: Optional[str]
-    firstname: Optional[str]
-    lastname: Optional[str] 
-    class Config:
-        orm_mode = True
-
-
-class ApplicantReadModel(BaseModel):
-
-    id: int
-    username: str
     password: str
     firstname: str
     lastname: str 
@@ -40,10 +29,22 @@ class ApplicantReadModel(BaseModel):
         orm_mode = True
 
 
+class ApplicantReadModel(BaseModel):
+
+    id: Optional[int]
+    username: Optional[str]
+    firstname: Optional[str]
+    lastname: Optional[str]
+    password: Optional[str]
+    class Config:
+        orm_mode = True
+
+
 class ApplicantSearchModel(BaseModel):
     id: Optional[int]
     username: Optional[str]
-    firstname: str
-    lastname: str 
+    firstname: Optional[str]
+    lastname: Optional[str]
+    
     class Config:
         orm_mode = True

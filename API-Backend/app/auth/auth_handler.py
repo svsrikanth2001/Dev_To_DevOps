@@ -2,7 +2,7 @@ import time
 from typing import Dict
 import jwt
 
-from app.library.configuration_handler import ConfigurationHandler
+from app.commonlib.configuration_handler import ConfigurationHandler
 
 config = ConfigurationHandler()
 

@@ -3,14 +3,49 @@
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
+    "compounds": [
+        {
+          "name": "Backend",
+          "configurations": [
+            "RUN_API_Backend",
+            "RUN_API_Gateway"
+          ],
+          "stopAll": true
+        }
+      ],
     "configurations": [
         {
-            "name": "Python: FastAPI",
+            "name": "RUN_API_Backend",
             "type": "python",
             "request": "launch",
            "program": "API-Backend/main.py",
             "jinja": true,
-            "justMyCode": true 
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}",
+            "env":{
+                "PYTHONPATH": "commonlib/",
+                "API_BACKEND_URL": "http://localhost:8081/api/backend",
+                "DB_CONN_STRING": "postgresql://postgres:postgres@localhost:5432/freshersonly",
+                "INTERNAL_API_TOKEN": "ABC123",
+                "JWT_SECRET":"NVYDFGJKNWUKIWIW",
+                "JWT_ALGORITHM":"HS256",
+            } 
+        },
+        {
+            "name": "RUN_API_Gateway",
+            "type": "python",
+            "request": "launch",
+            "program": "API-Gateway/main.py",
+            "jinja": true,
+            "justMyCode": true,
+            "env":{
+                "PYTHONPATH": "commonlib/",
+                "API_BACKEND_URL": "http://localhost:8081/api/backend",
+                "DB_CONN_STRING": "postgresql://postgres:postgres@localhost:5432/freshersonly",
+                "INTERNAL_API_TOKEN": "ABC123",
+                "JWT_SECRET":"NVYDFGJKNWUKIWIW",
+                "JWT_ALGORITHM":"HS256",
+            } 
         }
     ]
 }

@@ -1,13 +1,17 @@
+from app.commonlib.auth_internal_token_handler import verify_internal_token
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi import status, Body, Depends, Request, Response
 import traceback
-
 from fastapi import FastAPI
-from app.library.configuration_handler import ConfigurationHandler
+from app.commonlib.configuration_handler import ConfigurationHandler
+from app.commonlib.auth_internal_token_handler import verify_internal_token
 
+
+ 
 from app.routers import applicant
 from app.routers import applicant_skills
 from app.routers import  skillslist
+
 
 
 ##########################################################################################
@@ -22,6 +26,7 @@ prefix = "/api/backend"
 app = FastAPI(title="Freshersonly API v1.0",
               openapi_url=f"{prefix}/openapi.json",
               docs_url=f"{prefix}")
+
 
 
 @app.route('/')

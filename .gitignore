@@ -1,2 +1,9 @@
 envexec/*
 *.pyc
+.idea/*
+.idea/.gitignore
+.idea/Dev_To_DevOps.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/inspectionProfiles/profiles_settings.xml

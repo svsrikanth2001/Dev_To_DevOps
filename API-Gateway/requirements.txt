@@ -1,0 +1,6 @@
+fastapi==0.70
+PyJWT==1.7.1
+uvicorn[standard]==0.15
+requests==2.26.0
+backoff==1.11.1
+hash
