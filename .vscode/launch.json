@@ -25,7 +25,7 @@
             "env":{
                 "PYTHONPATH": "commonlib/",
                 "API_BACKEND_URL": "http://localhost:8081/api/backend",
-                "DB_CONN_STRING": "postgresql://postgres:postgres@localhost:5432/freshersonly",
+                "DB_CONN_STRING": "postgresql://postgres:password123!@64.227.179.202:5432/freshersonly",
                 "INTERNAL_API_TOKEN": "ABC123",
                 "JWT_SECRET":"NVYDFGJKNWUKIWIW",
                 "JWT_ALGORITHM":"HS256",
@@ -41,7 +41,7 @@
             "env":{
                 "PYTHONPATH": "commonlib/",
                 "API_BACKEND_URL": "http://localhost:8081/api/backend",
-                "DB_CONN_STRING": "postgresql://postgres:postgres@localhost:5432/freshersonly",
+                "DB_CONN_STRING": "postgresql://postgres:password123!@64.227.179.202:5432/freshersonly",
                 "INTERNAL_API_TOKEN": "ABC123",
                 "JWT_SECRET":"NVYDFGJKNWUKIWIW",
                 "JWT_ALGORITHM":"HS256",

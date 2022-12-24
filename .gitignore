@@ -1,4 +1,4 @@
-webapp/*
+
 envexec/*
 *.pyc
 .idea/*
@@ -11,15 +11,3 @@ envexec/*
 tailwindtest/*
 myprojectweb/*
 
-webapp/package-lock.json
-webapp/package.json
-webapp/pages/_app.js
-webapp/pages/index.js
-webapp/styles/globals.css
-webapp/styles/Home.module.css
-webapp/package-lock.json
-webapp/package.json
-webapp/pages/_app.js
-webapp/pages/index.js
-webapp/styles/globals.css
-webapp/styles/Home.module.css

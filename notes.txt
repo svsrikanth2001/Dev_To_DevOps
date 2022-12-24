@@ -4,3 +4,8 @@
   "firstname": "Srikanth",
   "lastname": "Venkata"
 }
+
+{
+  "username": "svsrikanth",
+  "password": "password@123"
+}
