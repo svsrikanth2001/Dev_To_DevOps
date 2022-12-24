@@ -10,4 +10,4 @@ envexec/*
 .idea/inspectionProfiles/profiles_settings.xml
 tailwindtest/*
 myprojectweb/*
-
+.vscode/*
