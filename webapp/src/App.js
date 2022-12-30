@@ -8,6 +8,7 @@ import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
 import PrivateRoute from "./components/PrivateRoute";
 import PageNotFound from "./components/PageNotFound";
+import Signup from "./pages/Signup";
 
 
 
@@ -36,6 +37,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Login />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
               <Route element={<PrivateRoute />}>
                 <Route element={<Dashboard />} path="/dashboard" />
               </Route>
