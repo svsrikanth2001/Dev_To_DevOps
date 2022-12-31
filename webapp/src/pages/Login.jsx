@@ -4,16 +4,21 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useStateContext } from "../context/ContextProvider";
 import axios from "axios";
+import {Buffer} from 'buffer';
 const baseurl = "http://localhost:8080/api-gateway/web";
 
+
 const Login = () => {
+  function decodeJwt(token) {
+    var base64Payload = token.split(".")[1];
+    var payloadBuffer = Buffer.from(base64Payload, "base64");
+    return JSON.parse(payloadBuffer.toString());
+  }
   const {
-    username,
     handleUserName,
-    userLoggedIn,
     handleUserLoggedIn,
-    setUserName,
-    setUserLogggedIn,
+    handleUserToken,
+    handleTokenData,
   } = useStateContext();
 
   const {
@@ -30,20 +35,18 @@ const Login = () => {
   };
 
   const onSubmit = (data) => {
-    //console.log('into on submit button');
-    //console.log(data);
     axios
       .post(`${baseurl}/authenticate`, data)
       .then((response) => {
-        console.log(response);
         if (response.status == 200 && response.statusText == "OK") {
           handleUserName(data["username"]);
           handleUserLoggedIn(true);
+          handleUserToken(response["data"]["access_token"]);
+          handleTokenData(decodeJwt(response['data']['access_token']))
           navigate("/dashboard");
         }
       })
       .catch((error) => {
-        console.log(error);
         setError(
           "password",
           { type: "manual", message: "Password is incorrect!" },
@@ -89,8 +92,10 @@ const Login = () => {
             </button>
           </div>
         </form>
-        <button className="w-full px-4 py-2 mt-5 tracking-wide text-white transition-colors duration-200 transform bg-blue-700 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
-        onClick={handleSignUp}>
+        <button
+          className="w-full px-4 py-2 mt-5 tracking-wide text-white transition-colors duration-200 transform bg-blue-700 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+          onClick={handleSignUp}
+        >
           SignUp
         </button>
       </div>
