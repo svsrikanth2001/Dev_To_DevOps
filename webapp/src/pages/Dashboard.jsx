@@ -2,11 +2,11 @@ import React from 'react'
 import { useStateContext } from '../context/ContextProvider';
 
 const Dashboard = () => {
-    const { username,userLoggedIn} = useStateContext();
+    const { username,tokendata} = useStateContext();
     const user1 = username['username'];
     
     return (
-        <div className="relative flex flex-col justify-center pl-2"> Welcome {user1} !!</div>
+        <div className="relative flex flex-col justify-center pl-2"> Welcome {tokendata['firstname']} {tokendata['lastname']} !!</div>
     )
 }
 
