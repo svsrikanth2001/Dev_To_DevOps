@@ -40,6 +40,5 @@ class JWTBearer(HTTPBearer):
             decoded_token = jwt.decode(token, config.JWT_SECRET,
                                        algorithms=[config.JWT_ALGORITHM])
             return decoded_token if decoded_token["expires"] >= time.time() else None
-        except Exception as  Ex:
-            print(Ex)
+        except :
             return {}
