@@ -37,8 +37,9 @@ class JWTBearer(HTTPBearer):
     @staticmethod
     def decode_jwt(token: str) -> dict:
         try:
-            decoded_token = jwt.decode(token, config.CUSTOMER_AUTH_JWT_SECRET,
-                                       algorithms=[config.CUSTOMER_AUTH_JWT_ALGORITHM])
+            decoded_token = jwt.decode(token.split(' ')[1], config.JWT_SECRET,
+                                       algorithms=[config.JWT_ALGORITHM])
             return decoded_token if decoded_token["expires"] >= time.time() else None
-        except:
+        except Exception as  Ex:
+            print(Ex)
             return {}

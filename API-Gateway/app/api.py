@@ -7,6 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.routers import registration
 from app.routers import authentication
 from app.middleware.request_context_middleware import RequestContextMiddleware
+from app.routers import execute
 
 
 
@@ -48,4 +49,4 @@ async def default_route(request):
 
 app.include_router(registration.router, prefix=f"{prefix}")
 app.include_router(authentication.router, prefix=f"{prefix}")
-
+app.include_router(execute.router, prefix=f"{prefix}")

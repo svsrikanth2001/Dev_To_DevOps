@@ -2,7 +2,7 @@ import json
 import requests
 from fastapi import APIRouter
 from fastapi import Depends, HTTPException, Response, status, Request
-from api_gateway_web.models import execute
+from app.models import execute
 from app.commonlib.configuration_handler import ConfigurationHandler
 from app.commonlib.auth_bearer_handler import JWTBearer
 from fastapi.encoders import jsonable_encoder
@@ -18,35 +18,19 @@ config = ConfigurationHandler()
              tags=[router_tag])
 def api_gateway(gateway_post: execute.ExecutePostModel, response: Response, request: Request,
                 jwt_token: JWTBearer = Depends(JWTBearer())):
-    try:
-        gateway_post.service = gateway_post.service.upper()
-        service_origin = config.__getattribute__(f"LB_SERVICE_REGISTRY_{gateway_post.service}")
-    except AttributeError:
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
-                            detail=f"The service {gateway_post.service} does not exist.")
-
-    url = f"{service_origin}"
-    correlation_id = request.state.__getattr__(key='x-correlation-id')
-    request_id = request.state.__getattr__(key='x-request-id')
-
-    logger = Logger(x_request_id=request_id, x_correlation_id=correlation_id)
-
+ 
+    url = config.API_BACKEND_URL
+ 
     # base headers
     headers = {'Content-Type': 'application/json',
-               'accept': 'application/json',
-               'x-correlation-id': correlation_id}
+               'accept': 'application/json'}
 
-    # add our authorization context to headers based on destination.
-    if gateway_post.service in ["API_CORE"]:
-        headers['x-token'] = config.INTERNAL_API_TOKEN
-    else:
-        headers['Authorization'] = f"Bearer {jwt_token}"
 
     if gateway_post.path:
         url += gateway_post.path
 
     if gateway_post.query:
-        url += f"?{gateway_post.query}"
+        url += f"/{gateway_post.query}"
 
     if gateway_post.method == 'GET':
         request_response = requests.get(url=url,
@@ -76,7 +60,8 @@ def api_gateway(gateway_post: execute.ExecutePostModel, response: Response, requ
     response_model = execute.ExecutePostResponseModel.construct()
 
     if request_response.status_code >= 400:
-        logger.debug(message=f"API-Gateway-Web Execute", trace=f"Request='{str(request_response.request.__dict__)}' Response='{str(request_response.__dict__)}")
+        #logger.debug(message=f"API-Gateway-Web Execute", trace=f"Request='{str(request_response.request.__dict__)}' Response='{str(request_response.__dict__)}")
+        print("400 code")
 
     if request_response.headers.get('content-type') == 'application/json':
         try:
