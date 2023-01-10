@@ -21,8 +21,7 @@ class ApplicantDeleteModel(BaseModel):
 
 
 class ApplicantUpdateModel(BaseModel):
-    id: int
-    password: str
+    id: Optional[int]
     firstname: str
     lastname: str 
     class Config:

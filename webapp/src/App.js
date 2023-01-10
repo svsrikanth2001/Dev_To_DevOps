@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 import PrivateRoute from "./components/PrivateRoute";
 import PageNotFound from "./components/PageNotFound";
 import Signup from "./pages/Signup";
+import Profile from "./pages/Profile";
 
 
 
@@ -19,7 +20,7 @@ function App() {
       <BrowserRouter>
         <div >
           {userLoggedIn ? (
-            <div className="w-50 ">
+            <div className="w-auto">
               <Sidebar />
                  
             </div>
@@ -40,6 +41,7 @@ function App() {
               <Route path="/signup" element={<Signup />} />
               <Route element={<PrivateRoute />}>
                 <Route element={<Dashboard />} path="/dashboard" />
+                <Route element={<Profile />} path="/profile" />
               </Route>
               <Route path="*" element={<PageNotFound />} />
             </Routes>
